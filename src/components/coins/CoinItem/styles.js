@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
         marginRight: 10,
         marginTop: 10,
         padding: 12,
-        backgroundColor: Colors.dark1,
+        backgroundColor: Colors.dark4,
         borderRadius: 7
     },
     cardInfo: {
@@ -61,7 +61,7 @@ export const styles = StyleSheet.create({
     },
     cardPercentBoxText: {
         justifyContent: 'flex-end',
-        padding: 8,
+        padding: 6,
         fontSize: 16,
         fontWeight: '500',
         textAlign: 'center',

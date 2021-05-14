@@ -1,6 +1,9 @@
 import React from 'react'
 import { View, Text, Image, Pressable } from 'react-native'
 
+// Format Numbers
+import { formatNumbers } from '../../../utils/formatNumbers'
+
 // Styles
 import { styles } from './styles'
 
@@ -21,7 +24,7 @@ const CoinItem = ({ item, onPress }) => {
                     </View>
                 </View>
                 <View style={styles.cardPrice}>
-                    <Text style={styles.cardPriceText}>{`$${item.price_usd}`}</Text>
+                    <Text style={styles.cardPriceText}>{`$${formatNumbers(item.price_usd)}`}</Text>
                 </View>
                 <View style={styles.cardPercent}>
                     <View style={styles.cardPercentBox}>

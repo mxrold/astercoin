@@ -17,6 +17,8 @@ const CoinsStack = () => {
             headerStyle: {
                 backgroundColor: Colors.dark1,
                 shadowColor: 'transparent',
+                elevation: 0,
+                shadowOpacity: 0
             },
             headerTintColor: Colors.light
         }}
