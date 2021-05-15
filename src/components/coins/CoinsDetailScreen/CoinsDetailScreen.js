@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import useGetData from '../../../hooks/useGetData'
+import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 
-import { View, Text, Image, SectionList } from 'react-native'
+import { View, Text, Image, SectionList, FlatList } from 'react-native'
 
 // Format Numbers
 import { formatNumbers } from '../../../utils/formatNumbers'
@@ -17,14 +19,22 @@ import ArrowDown from '../../../assets/arrow-down.png'
 
 const CoinsDetailScreen = ({ route, navigation }) => {
     const [ value, setValue ] = useState({})
+    const [ markets, setMarkets ] = useState()
     
     useEffect(() => {
         const { coin } = route.params
         navigation.setOptions({ title: coin.symbol })
         setValue(coin)
-        console.log('coin', coin)
+
+        fetchMarketsData(coin.id)
     }, [])
 
+    const fetchMarketsData = async (coinId) => {
+        const URL = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`
+        const response = await useGetData(URL)
+        setMarkets(response)
+    }
+    
     const getSections = () => {
         const section = [
             {
@@ -40,13 +50,21 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                 data: [`$${formatNumbers(value.market_cap_usd)}`]
             },
             {
-                title: "Volume 24h",
+                title: "Volume 24 hours",
                 data: [`$${formatNumbers(value.volume24)}`]
+            },
+            {
+                title: "Total supply",
+                data: [formatNumbers(value.tsupply)]
+            },
+            {
+                title: "Max supply",
+                data: value.msupply > 0 ? [formatNumbers(value.msupply)] : ['Unlimited supply']
             }
         ]   
         return section
     }
-
+    
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -112,6 +130,15 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                             <Text style={styles.sectionContainerTitleText}>{section.title}</Text>
                         </View>
                     }
+                />
+            </View>
+            <View style={styles.flatList}>
+                <Text style={styles.flatListTitle}>Markets</Text>
+                <FlatList
+                    data={markets}
+                    keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
+                    renderItem={({ item }) => <CoinsMarkets item={item} />}
+                    horizontal={true}
                 />
             </View>
         </View>

@@ -33,7 +33,7 @@ export const styles =  StyleSheet.create({
         width: 35,
         height: 35,
         borderWidth: 2,
-        borderColor: Colors.purple,
+        borderColor: Colors.dark3,
         borderRadius: 50
     },
     headerTopImg: {
@@ -79,6 +79,7 @@ export const styles =  StyleSheet.create({
     section: {
         position: 'relative',
         top: -20,
+        height: '45%',
         marginTop: 6,
         marginRight: 26,
         marginLeft: 26,
@@ -86,7 +87,8 @@ export const styles =  StyleSheet.create({
         zIndex: 2,
     },
     sectionContainer: {
-        padding: 16,
+        paddingVertical: 6,
+        paddingHorizontal: 10,
         backgroundColor: Colors.dark4,
         borderRadius: 7
     },
@@ -109,4 +111,14 @@ export const styles =  StyleSheet.create({
         fontWeight: 'bold',
         color: Colors.blue4
     },
+    flatList: {
+        marginHorizontal: 10
+    },
+    flatListTitle: {
+        marginLeft: 10,
+        marginBottom: 5,
+        fontSize: 18,
+        fontWeight: '500',
+        color: Colors.blue4
+    }
 })
