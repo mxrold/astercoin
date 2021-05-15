@@ -10,11 +10,12 @@ export const styles = StyleSheet.create({
         flexDirection: 'row',
         marginHorizontal: 10,
         marginTop: 10,
-        padding: 12,
+        padding: 10,
         backgroundColor: Colors.dark4,
         borderRadius: 7
     },
     cardInfo: {
+        position: 'relative',
         flexWrap: 'wrap',
         justifyContent: 'center',
         width: '45%',
@@ -22,6 +23,21 @@ export const styles = StyleSheet.create({
     cardInfoBox: {
         flexDirection: 'row',
         alignItems: 'center'
+    },
+    cardBoxRank: {
+        position: 'absolute',
+        top: -16,
+        left: -16,
+        width: 20,
+        height: 20,
+        fontSize: 12,
+        fontWeight: '700',
+        backgroundColor: Colors.dark4,
+        color: Colors.blue1,
+        borderRadius: 50,
+        textAlignVertical: 'center',
+        textAlign: 'center'
+        
     },
     cardBoxImg: {
         width: 25,

@@ -16,6 +16,7 @@ const CoinItem = ({ item, onPress }) => {
             <View style={styles.card}>
                 <View style={styles.cardInfo}>
                     <View style={styles.cardInfoBox}>
+                        <Text style={styles.cardBoxRank}>{`#${item.rank}`}</Text>
                         <Image style={styles.cardBoxImg} source={{ uri: useGetIcon(item.nameid)}} />
                         <Text style={styles.cardBoxSymbol}>{item.symbol}</Text>
                     </View>

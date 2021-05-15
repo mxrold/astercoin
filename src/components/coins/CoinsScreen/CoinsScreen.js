@@ -18,7 +18,7 @@ const CoinsScreen = ({ navigation }) => {
     
     const getData = async () => {
         setLoading(true)
-        const URL = 'https://api.coinlore.net/api/tickers/'
+        const URL = 'https://api.coinlore.net/api/tickers/?start=0&limit=100'
         const coins = await useGetData(URL)
         setData(coins.data)
         setAllCoins(coins.data)
