@@ -4,6 +4,7 @@ import useGetData from '../../../hooks/useGetData'
 // Component
 import CoinItem from '../CoinItem/CoinItem'
 import CoinsSearch from '../CoinsSearch/CoinsSearch'
+import CoinsDividerItem from '../CoinsDividerItem/CoinsDividerItem'
 import Loader from '../Global/Loader'
 import { View, FlatList } from 'react-native'
 
@@ -45,6 +46,7 @@ const CoinsScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <CoinsSearch onChange={onHandleSearch}/>
+            <CoinsDividerItem />
             {
                 loading && 
                 <Loader />

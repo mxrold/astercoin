@@ -8,8 +8,7 @@ export const styles = StyleSheet.create({
     card: {
         flexWrap: 'wrap',
         flexDirection: 'row',
-        marginLeft: 10,
-        marginRight: 10,
+        marginHorizontal: 10,
         marginTop: 10,
         padding: 12,
         backgroundColor: Colors.dark4,
