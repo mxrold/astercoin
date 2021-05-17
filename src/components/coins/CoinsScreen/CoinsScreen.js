@@ -5,7 +5,7 @@ import useGetData from '../../../hooks/useGetData'
 import CoinItem from '../CoinItem/CoinItem'
 import CoinsSearch from '../CoinsSearch/CoinsSearch'
 import CoinsDividerItem from '../CoinsDividerItem/CoinsDividerItem'
-import Loader from '../Global/Loader'
+import Loader from '../../Global/Loader'
 import { View, FlatList } from 'react-native'
 
 // Styles

@@ -31,7 +31,7 @@ const CoinItem = ({ item, onPress }) => {
                     <View style={styles.cardPercentBox}>
                         <Text style={[styles.cardPercentBoxText, 
                             item.percent_change_1h > 0 ? styles.cardPercentBoxTextUp : styles.cardPercentBoxTextDown ]}>
-                                {item.percent_change_1h}
+                                {`${item.percent_change_1h}%`}
                         </Text>
                     </View>
                 </View>

@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
         marginHorizontal: 10,
-        marginTop: 10,
+        marginTop: 18,
         padding: 10,
         backgroundColor: Colors.dark4,
         borderRadius: 7
@@ -26,11 +26,11 @@ export const styles = StyleSheet.create({
     },
     cardBoxRank: {
         position: 'absolute',
-        top: -16,
-        left: -16,
-        width: 20,
-        height: 20,
-        fontSize: 12,
+        top: -18,
+        left: -18,
+        width: 25,
+        height: 25,
+        fontSize: 10,
         fontWeight: '700',
         backgroundColor: Colors.dark4,
         color: Colors.blue1,
@@ -84,9 +84,9 @@ export const styles = StyleSheet.create({
         borderRadius: 3.5
     },
     cardPercentBoxTextUp: {
-        backgroundColor: Colors.green
+        color: Colors.green
     },
     cardPercentBoxTextDown: {
-        backgroundColor: Colors.red
+        color: Colors.red
     }
 })

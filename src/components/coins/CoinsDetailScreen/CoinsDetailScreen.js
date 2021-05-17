@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import useGetData from '../../../hooks/useGetData'
 import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
+import Loader from '../../Global/Loader'
 
 import { View, Text, Image, SectionList, FlatList } from 'react-native'
 

@@ -3,7 +3,7 @@ import React from 'react'
 import { View, ActivityIndicator, StyleSheet } from 'react-native'
 
 // Styles
-import { Colors } from '../../../assets/GlobalStyles/Colors'
+import { Colors } from '../../assets/GlobalStyles/Colors'
 
 const Loader = () => {
     return (
