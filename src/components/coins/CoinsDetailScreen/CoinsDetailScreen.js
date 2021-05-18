@@ -21,20 +21,23 @@ import ArrowDown from '../../../assets/arrow-down.png'
 const CoinsDetailScreen = ({ route, navigation }) => {
     const [ value, setValue ] = useState({})
     const [ markets, setMarkets ] = useState()
+    const [ loading, setLoading ] = useState(false)
     
     useEffect(() => {
         const { coin } = route.params
         navigation.setOptions({ title: coin.symbol })
         setValue(coin)
 
+        const fetchMarketsData = async (coinId) => {
+            setLoading(true)
+            const URL = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`
+            const response = await useGetData(URL)
+            setMarkets(response)
+            setLoading(false)
+        }
+
         fetchMarketsData(coin.id)
     }, [])
-
-    const fetchMarketsData = async (coinId) => {
-        const URL = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`
-        const response = await useGetData(URL)
-        setMarkets(response)
-    }
     
     const getSections = () => {
         const section = [
@@ -133,15 +136,19 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                     }
                 />
             </View>
-            <View style={styles.flatList}>
-                <Text style={styles.flatListTitle}>Markets</Text>
-                <FlatList
-                    data={markets}
-                    keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
-                    renderItem={({ item }) => <CoinsMarkets item={item} />}
-                    horizontal={true}
-                />
-            </View>
+            { 
+                loading === true 
+                ? <Loader /> 
+                : <View style={styles.flatList}>
+                    <Text style={styles.flatListTitle}>Markets</Text>
+                    <FlatList
+                        data={markets}
+                        keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
+                        renderItem={({ item }) => <CoinsMarkets item={item} />}
+                        horizontal={true}
+                    />
+                </View>
+            }
         </View>
     )
 }
