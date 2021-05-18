@@ -38,7 +38,7 @@ const App = () => {
             tabBarIcon: ({ size, color }) => (
               <Image 
                 source={Coins} 
-                style={{tintColor: color, width: size, height: size, resizeMode: 'cover'}}
+                style={{tintColor: color, width: 18, height: 18, resizeMode: 'contain'}}
               />
             )
           }}
@@ -50,7 +50,7 @@ const App = () => {
           tabBarIcon: ({ size, color }) => (
             <Image 
               source={Favorites} 
-              style={{tintColor: color, width: size, height: size, resizeMode: 'contain'}}
+              style={{tintColor: color, width: 18, height: 18, resizeMode: 'contain'}}
             />
           )
         }}
@@ -62,7 +62,7 @@ const App = () => {
           tabBarIcon: ({ size, color }) => (
             <Image 
               source={News} 
-              style={{tintColor: color, width: size, height: size, resizeMode: 'contain'}}
+              style={{tintColor: color, width: 18, height: 18, resizeMode: 'contain'}}
             />
           )
         }}
