@@ -4,11 +4,16 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
 import CoinsStack from './src/components/coins/CoinsStack/CoinsStack'
 import FavoritesStack from './src/components/favorites/FavoritesStack/FavoritesStack'
+import NewsStack from './src/components/news/NewsStack/NewsStack'
 
+// Styles
 import { Image } from 'react-native'
 import { Colors } from './src/assets/GlobalStyles/Colors'
+
+//Images
 import Coins from './src/assets/coins.png'
 import Favorites from './src/assets/favorites.png'
+import News from './src/assets/news.png'
 
 const Tabs = createBottomTabNavigator()
 
@@ -45,6 +50,18 @@ const App = () => {
           tabBarIcon: ({ size, color }) => (
             <Image 
               source={Favorites} 
+              style={{tintColor: color, width: size, height: size, resizeMode: 'contain'}}
+            />
+          )
+        }}
+        />
+        <Tabs.Screen 
+        name="News"
+        component={NewsStack}
+        options={{
+          tabBarIcon: ({ size, color }) => (
+            <Image 
+              source={News} 
               style={{tintColor: color, width: size, height: size, resizeMode: 'contain'}}
             />
           )

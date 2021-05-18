@@ -41,7 +41,7 @@ export const styles = StyleSheet.create({
     },
     cardBoxImg: {
         width: 25,
-        height: 25
+        height: 25,
     },
     cardBoxSymbol: {
         marginLeft: 6,

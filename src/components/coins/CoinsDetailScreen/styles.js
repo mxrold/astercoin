@@ -13,8 +13,8 @@ export const styles =  StyleSheet.create({
         paddingRight: 26,
         paddingBottom: 26,
         backgroundColor: Colors.dark1,
-        borderBottomLeftRadius: 30,
-        borderBottomRightRadius: 30,
+        borderBottomLeftRadius: 21,
+        borderBottomRightRadius: 21,
         zIndex: 1,
     },
     headerTop: {
