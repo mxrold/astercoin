@@ -26,9 +26,14 @@ const App = () => {
           activeBackgroundColor: Colors.dark1,
           inactiveBackgroundColor: Colors.dark1,
           activeTintColor: Colors.purple,
-          inactiveTintColor: Colors.blue3,
-          borderTopWidth: 0,
-          elevation: 0
+          inactiveTintColor: Colors.dark3,
+          fontSize: 18,
+          labelStyle: {
+            fontSize: 12,
+          },
+          style: {
+            borderTopColor: Colors.dark1,
+          }
         }}
       >
         <Tabs.Screen 
