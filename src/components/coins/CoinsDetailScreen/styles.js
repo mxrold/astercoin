@@ -24,7 +24,8 @@ export const styles =  StyleSheet.create({
     },
     headerTopImg: {
         flexDirection: 'row',
-        width: '60%'
+        width: '75%',
+        paddingRight: 30
     },
     headerTopImgContainerDiv: {
         justifyContent: 'center',
@@ -46,11 +47,22 @@ export const styles =  StyleSheet.create({
         fontWeight: '700',
         color: Colors.light
     },
+    headerTopContainerIcons: {
+        flexDirection: 'row',
+        justifyContent:  'space-between',
+        width: '25%',
+    },
+    headerTopShare: {
+        
+    },
+    headerTopShareIcon: {
+        width: 30,
+        height: 30
+    },
     headerTopFavorite: {
-        width: '40%',
+
     },
     headerTopFavoriteIcon: {
-        alignSelf: 'flex-end',
         width: 30,
         height: 30
     },

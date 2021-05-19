@@ -20,6 +20,7 @@ import ArrowUp from '../../../assets/arrow-up.png'
 import ArrowDown from '../../../assets/arrow-down.png'
 import Heart from '../../../assets/heart_fill.png'
 import HeartOutline from '../../../assets/heart_outline.png'
+import Share from '../../../assets/share.png'
 
 
 const CoinsDetailScreen = ({ route, navigation }) => {
@@ -111,12 +112,20 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                         </View>
                         <Text style={styles.headerTopText}>{value.name}</Text>
                     </View>
-                    <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>
-                        <Image 
-                            style={styles.headerTopFavoriteIcon} 
-                            source={ isFavorite ? HeartOutline : Heart }
-                        />
-                    </Pressable>
+                    <View style={styles.headerTopContainerIcons}>
+                        <Pressable style={styles.headerTopShare}>
+                            <Image 
+                                style={styles.headerTopShareIcon} 
+                                source={ Share }
+                            />
+                        </Pressable>
+                        <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>
+                            <Image 
+                                style={styles.headerTopFavoriteIcon} 
+                                source={ isFavorite ? HeartOutline : Heart }
+                            />
+                        </Pressable>
+                    </View>
                 </View>
                 <View style={styles.headerBottom}>
                     <View style={styles.headerBottomBox}>

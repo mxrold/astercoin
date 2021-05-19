@@ -51,6 +51,7 @@ export const styles = StyleSheet.create({
     },
     cardInfoNameText: {
         marginLeft: 31,
+        paddingRight: 10,
         fontSize: 14,
         fontWeight: '500',
         color: Colors.blue4
@@ -71,8 +72,8 @@ export const styles = StyleSheet.create({
         width: '27.5%',
     },
     cardPercentBox: {
-        width: '70%',
-        marginLeft: '30%',
+        width: '90%',
+        marginLeft: '10%',
     },
     cardPercentBoxText: {
         justifyContent: 'flex-end',
