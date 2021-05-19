@@ -7,7 +7,7 @@ export const styles =  StyleSheet.create({
         backgroundColor: Colors.dark2
     },
     header: {
-        height: '30%',
+        height: '35%',
         paddingTop: 10,
         paddingLeft: 26,
         paddingRight: 26,
@@ -19,15 +19,14 @@ export const styles =  StyleSheet.create({
     },
     headerTop: {
         flexDirection: 'row',
-        height: '50%'
+        justifyContent: 'space-between',
+        height: '55%'
     },
-    headerTopText: {
-        marginLeft: 6,
-        fontSize: 25,
-        fontWeight: '700',
-        color: Colors.light
+    headerTopImg: {
+        flexDirection: 'row',
+        width: '60%'
     },
-    headerTopImgContainer: {
+    headerTopImgContainerDiv: {
         justifyContent: 'center',
         alignItems: 'center',
         width: 35,
@@ -36,15 +35,30 @@ export const styles =  StyleSheet.create({
         borderColor: Colors.dark3,
         borderRadius: 50
     },
-    headerTopImg: {
+    headerTopImgContainerDivImg: {
         width: 24,
         height: 24,
+    },
+    headerTopText: {
+        flexWrap: 'wrap',
+        marginLeft: 6,
+        fontSize: 25,
+        fontWeight: '700',
+        color: Colors.light
+    },
+    headerTopFavorite: {
+        width: '40%',
+    },
+    headerTopFavoriteIcon: {
+        alignSelf: 'flex-end',
+        width: 30,
+        height: 30
     },
     headerBottom: {
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        height: '50%',
+        height: '45%',
         backgroundColor: Colors.dark4,
         borderRadius: 7
     },
@@ -80,10 +94,8 @@ export const styles =  StyleSheet.create({
         position: 'relative',
         top: -20,
         height: '45%',
-        marginTop: 6,
-        marginRight: 26,
-        marginLeft: 26,
-        marginBottom: 6,
+        marginVertical: 6,
+        marginHorizontal: 26,
         zIndex: 2,
     },
     sectionContainer: {
@@ -112,6 +124,9 @@ export const styles =  StyleSheet.create({
         color: Colors.blue4
     },
     flatList: {
+        position: 'relative',
+        top: -20,
+        height: '20%',
         marginHorizontal: 10
     },
     flatListTitle: {

@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react'
 import useGetData from '../../../hooks/useGetData'
 import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 import Loader from '../../Global/Loader'
+import Storage from '../../../utils/Storage'
 
-import { View, Text, Image, SectionList, FlatList } from 'react-native'
+import { View, Text, Image, SectionList, FlatList, Pressable } from 'react-native'
 
 // Format Numbers
 import { formatNumbers } from '../../../utils/formatNumbers'
@@ -17,10 +18,14 @@ import { useGetIcon } from '../../../hooks/useGetIcon'
 // Arrows
 import ArrowUp from '../../../assets/arrow-up.png'
 import ArrowDown from '../../../assets/arrow-down.png'
+import Heart from '../../../assets/heart_fill.png'
+import HeartOutline from '../../../assets/heart_outline.png'
+
 
 const CoinsDetailScreen = ({ route, navigation }) => {
     const [ value, setValue ] = useState({})
     const [ markets, setMarkets ] = useState()
+    const [ isFavorite, setIsFavorite ] = useState(false)
     const [ loading, setLoading ] = useState(false)
     
     useEffect(() => {
@@ -68,18 +73,50 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         ]   
         return section
     }
+
+    const toggleFavorite = () => {
+        if(isFavorite) {
+            removeFavorite()
+        } else {
+            addFavorite()
+        }
+    }
+
+    const addFavorite = () => {
+        const coin = JSON.stringify(value)
+        const key = `favorite-${value.id}`
+
+        const stored = Storage.instance.add(key, coin)
+
+        if(stored) {
+            setIsFavorite(true)
+        }
+    }
+
+    const removeFavorite = () => {
+        return setIsFavorite(false)
+    }
     
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerTop}>
-                    <View style={styles.headerTopImgContainer}>
-                        <Image 
-                            style={styles.headerTopImg}
-                            resizeMode={'contain'}
-                            source={{ uri: useGetIcon(value.nameid)}}/>
+                    <View style={styles.headerTopImg}>
+                        <View style={styles.headerTopImgContainerDiv}>
+                            <Image 
+                                style={styles.headerTopImgContainerDivImg}
+                                resizeMode={'contain'}
+                                source={{ uri: useGetIcon(value.nameid)}}
+                            />
+                        </View>
+                        <Text style={styles.headerTopText}>{value.name}</Text>
                     </View>
-                    <Text style={styles.headerTopText}>{value.name}</Text>
+                    <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>
+                        <Image 
+                            style={styles.headerTopFavoriteIcon} 
+                            source={ isFavorite ? HeartOutline : Heart }
+                        />
+                    </Pressable>
                 </View>
                 <View style={styles.headerBottom}>
                     <View style={styles.headerBottomBox}>
@@ -137,18 +174,17 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                 />
             </View>
             { 
-                loading === true 
-                ? <Loader /> 
-                : <View style={styles.flatList}>
-                    <Text style={styles.flatListTitle}>Markets</Text>
-                    <FlatList
-                        data={markets}
-                        keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
-                        renderItem={({ item }) => <CoinsMarkets item={item} />}
-                        horizontal={true}
-                    />
-                </View>
+                loading &&  <Loader /> 
             }
+            <View style={styles.flatList}>
+                <Text style={styles.flatListTitle}>Markets</Text>
+                <FlatList
+                    data={markets}
+                    keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
+                    renderItem={({ item }) => <CoinsMarkets item={item} />}
+                    horizontal={true}
+                />
+            </View>
         </View>
     )
 }

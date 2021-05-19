@@ -12,7 +12,7 @@ import { Colors } from './src/assets/GlobalStyles/Colors'
 
 //Images
 import Coins from './src/assets/coins.png'
-import Favorites from './src/assets/favorites.png'
+import Favorites from './src/assets/heart.png'
 import News from './src/assets/news.png'
 
 const Tabs = createBottomTabNavigator()
