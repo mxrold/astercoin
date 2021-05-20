@@ -24,7 +24,7 @@ class Storage {
         }
     }
 
-    remove = async () => {
+    remove = async (key) => {
         try {
             await AsyncStorage.removeItem(key)
             return true

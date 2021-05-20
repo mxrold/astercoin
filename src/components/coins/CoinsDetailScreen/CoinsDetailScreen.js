@@ -4,7 +4,7 @@ import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 import Loader from '../../Global/Loader'
 import Storage from '../../../utils/Storage'
 
-import { View, Text, Image, SectionList, FlatList, Pressable } from 'react-native'
+import { View, Text, Image, SectionList, FlatList, Pressable, Alert } from 'react-native'
 
 // Format Numbers
 import { formatNumbers } from '../../../utils/formatNumbers'
@@ -42,6 +42,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
             setLoading(false)
         }
 
+        getFavorite(coin)
         fetchMarketsData(coin.id)
     }, [])
     
@@ -83,19 +84,53 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         }
     }
 
-    const addFavorite = () => {
+    const addFavorite = async () => {
         const coin = JSON.stringify(value)
         const key = `favorite-${value.id}`
 
-        const stored = Storage.instance.add(key, coin)
+        const stored = await Storage.instance.add(key, coin)
 
+        console.log('stored',stored)
         if(stored) {
             setIsFavorite(true)
         }
     }
 
     const removeFavorite = () => {
-        return setIsFavorite(false)
+        Alert.alert('Remove favorite', 'Are you sure?',[
+            {
+                text: 'Cancel',
+                onPress: () => {},
+                style: 'cancel'
+            },
+            {
+                text: 'Remove',
+                onPress: () => {
+                    const key = `favorite-${value.id}`
+                    const remove = Storage.instance.remove(key)
+            
+                    if(remove) {
+                        setIsFavorite(false)
+                    }
+                },
+                style: 'destructive'
+            }
+        ]) 
+    }
+
+    const getFavorite = async (coin) => {
+        try {
+            const key = `favorite-${coin.id}`
+            const favStr = await Storage.instance.get(key)
+            
+            if(favStr != null) {
+                setIsFavorite(true)
+            }
+
+            console.log('favStr', favStr)
+        } catch(error) {
+            console.log('getFavorite error', error)
+        }
     }
     
     return (
@@ -119,10 +154,10 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                                 source={ Share }
                             />
                         </Pressable>
-                        <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>
+                        <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>  
                             <Image 
                                 style={styles.headerTopFavoriteIcon} 
-                                source={ isFavorite ? HeartOutline : Heart }
+                                source={ isFavorite ? Heart : HeartOutline }
                             />
                         </Pressable>
                     </View>
