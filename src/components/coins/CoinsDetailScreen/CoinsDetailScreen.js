@@ -4,7 +4,7 @@ import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 import Loader from '../../Global/Loader'
 import Storage from '../../../utils/Storage'
 
-import { View, Text, Image, SectionList, FlatList, Pressable, Alert } from 'react-native'
+import { View, Text, Image, SectionList, FlatList, Pressable, Alert, Share } from 'react-native'
 
 // Format Numbers
 import { formatNumbers } from '../../../utils/formatNumbers'
@@ -20,7 +20,7 @@ import ArrowUp from '../../../assets/arrow-up.png'
 import ArrowDown from '../../../assets/arrow-down.png'
 import Heart from '../../../assets/heart_fill.png'
 import HeartOutline from '../../../assets/heart_outline.png'
-import Share from '../../../assets/share.png'
+import ShareCoin from '../../../assets/share.png'
 
 
 const CoinsDetailScreen = ({ route, navigation }) => {
@@ -29,6 +29,20 @@ const CoinsDetailScreen = ({ route, navigation }) => {
     const [ isFavorite, setIsFavorite ] = useState(false)
     const [ loading, setLoading ] = useState(false)
     
+    const data = {
+        name: value.name,
+        symbol: value.symbol,
+        per_1h: `${value.percent_change_1h}%`,
+        per_24h: `${value.percent_change_24h}%`,
+        per_7d: `${value.percent_change_7}%`,
+        rank: `#${value.rank}`,
+        price: `$${formatNumbers(value.price_usd)}`,
+        market: `$${formatNumbers(value.market_cap_usd)}`,
+        volume24: `$${formatNumbers(value.volume24)}`,
+        t_supply: formatNumbers(value.tsupply),
+        m_supply: value.msupply > 0 ? formatNumbers(value.msupply) : 'Unlimited supply'
+    }
+
     useEffect(() => {
         const { coin } = route.params
         navigation.setOptions({ title: coin.symbol })
@@ -50,27 +64,27 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         const section = [
             {
                 title: "Rank",
-                data: [`#${value.rank}`]
+                data: [data.rank]
             },
             {
                 title: "Price USD",
-                data: [`$${formatNumbers(value.price_usd)}`]
+                data: [data.price]
             },
             {
                 title: "Market cap",
-                data: [`$${formatNumbers(value.market_cap_usd)}`]
+                data: [data.price]
             },
             {
                 title: "Volume 24 hours",
-                data: [`$${formatNumbers(value.volume24)}`]
+                data: [data.volume24]
             },
             {
                 title: "Total supply",
-                data: [formatNumbers(value.tsupply)]
+                data: [data.t_supply]
             },
             {
                 title: "Max supply",
-                data: value.msupply > 0 ? [formatNumbers(value.msupply)] : ['Unlimited supply']
+                data: [data.m_supply]
             }
         ]   
         return section
@@ -133,6 +147,26 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         }
     }
     
+    const onShare = async () => {
+        try {
+          const result = await Share.share({
+           title: 'App link',
+            message: `${data.name} - ${data.symbol}\n- Rank: ${data.rank}\n- Price: ${data.price}\n- Percentajes:\n\t> 1 hour: ${data.per_1h}\n\t> 24 hours: ${data.per_24h}\n\t> 7 days: ${data.per_7d}\n- Market cap: ${data.market}\n- Volume 24 hours: ${data.volume24}\n- Total supply: ${data.t_supply}\n- Max supply: ${data.m_supply}\n\nInformation by coinMarket`
+        });
+          if (result.action === Share.sharedAction) {
+            if (result.activityType) {
+              // shared with activity type of result.activityType
+            } else {
+              // shared
+            }
+          } else if (result.action === Share.dismissedAction) {
+            // dismissed
+          }
+        } catch (error) {
+          alert(error.message);
+        }
+      };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -148,10 +182,10 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                         <Text style={styles.headerTopText}>{value.name}</Text>
                     </View>
                     <View style={styles.headerTopContainerIcons}>
-                        <Pressable style={styles.headerTopShare}>
+                        <Pressable style={styles.headerTopShare} onPress={onShare}>
                             <Image 
                                 style={styles.headerTopShareIcon} 
-                                source={ Share }
+                                source={ ShareCoin }
                             />
                         </Pressable>
                         <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>  

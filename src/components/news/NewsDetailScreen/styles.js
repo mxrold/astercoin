@@ -61,6 +61,6 @@ export const styles = StyleSheet.create({
         fontWeight: '400',
         color: Colors.light,
         borderBottomWidth: 1,
-        borderBottomColor: Colors.purple,
+        borderBottomColor: Colors.dark3,
     },
 })
