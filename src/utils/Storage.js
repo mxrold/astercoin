@@ -35,7 +35,7 @@ class Storage {
         }
     }
 
-    multiGet = async () => {
+    multiGet = async (keys) => {
         try {
             return await AsyncStorage.multiGet(keys)
         } catch (error) {

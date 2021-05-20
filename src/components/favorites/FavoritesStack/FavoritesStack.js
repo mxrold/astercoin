@@ -1,6 +1,7 @@
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack'
 import FavoritesScreen from '../FavoritesScreen/FavoritesScreen'
+import CoinsDetailScreen from '../../coins/CoinsDetailScreen/CoinsDetailScreen'
 
 import { Colors } from '../../../assets/GlobalStyles/Colors'
 
@@ -19,10 +20,8 @@ const FavoritesStack = () => {
             headerTintColor: Colors.light
         }}
         >
-            <Stack.Screen 
-                name="Favorites" 
-                component={FavoritesScreen}
-            />
+            <Stack.Screen name="Favorites" component={FavoritesScreen}/>
+            <Stack.Screen name="CoinDetail" component={CoinsDetailScreen} />
         </Stack.Navigator>
     )
 }
