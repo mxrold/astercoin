@@ -6,6 +6,8 @@ import CoinsStack from './src/components/coins/CoinsStack/CoinsStack'
 import FavoritesStack from './src/components/favorites/FavoritesStack/FavoritesStack'
 import NewsStack from './src/components/news/NewsStack/NewsStack'
 
+import { StatusBar } from 'react-native'
+
 // Styles
 import { Image } from 'react-native'
 import { Colors } from './src/assets/GlobalStyles/Colors'
@@ -17,7 +19,7 @@ import News from './src/assets/news.png'
 
 const Tabs = createBottomTabNavigator()
 
-const App = () => {
+const AppContent = () => {
   return (
     <NavigationContainer>
       <Tabs.Navigator
@@ -75,6 +77,15 @@ const App = () => {
         
       </Tabs.Navigator>
     </NavigationContainer>
+  )
+}
+
+const App = () => {
+  return(
+    <>
+      <StatusBar backgroundColor="#101021" animated={true} />
+      <AppContent />
+    </>
   )
 }
 

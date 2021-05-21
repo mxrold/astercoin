@@ -44,9 +44,12 @@ const CoinsDetailScreen = ({ route, navigation }) => {
     }
 
     useEffect(() => {
+        setLoading(true)
         const { coin } = route.params
         navigation.setOptions({ title: coin.symbol })
         setValue(coin)
+        setLoading(false)
+
 
         const fetchMarketsData = async (coinId) => {
             setLoading(true)
@@ -153,15 +156,6 @@ const CoinsDetailScreen = ({ route, navigation }) => {
            title: 'App link',
             message: `${data.name} - ${data.symbol}\n- Rank: ${data.rank}\n- Price: ${data.price}\n- Percentajes:\n\t> 1 hour: ${data.per_1h}\n\t> 24 hours: ${data.per_24h}\n\t> 7 days: ${data.per_7d}\n- Market cap: ${data.market}\n- Volume 24 hours: ${data.volume24}\n- Total supply: ${data.t_supply}\n- Max supply: ${data.m_supply}\n\nInformation by coinMarket`
         });
-          if (result.action === Share.sharedAction) {
-            if (result.activityType) {
-              // shared with activity type of result.activityType
-            } else {
-              // shared
-            }
-          } else if (result.action === Share.dismissedAction) {
-            // dismissed
-          }
         } catch (error) {
           alert(error.message);
         }
@@ -169,6 +163,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
+            {loading && <Loader />}
             <View style={styles.header}>
                 <View style={styles.headerTop}>
                     <View style={styles.headerTopImg}>
