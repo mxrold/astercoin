@@ -34,7 +34,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         symbol: value.symbol,
         per_1h: `${value.percent_change_1h}%`,
         per_24h: `${value.percent_change_24h}%`,
-        per_7d: `${value.percent_change_7}%`,
+        per_7d: `${value.percent_change_7d}%`,
         rank: `#${value.rank}`,
         price: `$${formatNumbers(value.price_usd)}`,
         market: `$${formatNumbers(value.market_cap_usd)}`,
@@ -179,7 +179,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                                 source={{ uri: useGetIcon(value.nameid)}}
                             />
                         </View>
-                        <Text style={styles.headerTopText}>{value.name}</Text>
+                        <Text style={styles.headerTopText}>{data.name}</Text>
                     </View>
                     <View style={styles.headerTopContainerIcons}>
                         <Pressable style={styles.headerTopShare} onPress={onShare}>
@@ -200,36 +200,36 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                     <View style={styles.headerBottomBox}>
                         <Text style={styles.headerBottomDate}>1 hour</Text>
                         <Text style={
-                            [styles.headerBottomText, value.percent_change_1h > 0 
+                            [styles.headerBottomText, data.per_1h > 0 
                             ? styles.headerBottomUp 
                             : styles.headerBottomDown]
                         }>
-                            {value.percent_change_1h}
-                            <Image style={styles.headerBottomImg} source={value.percent_change_1h > 0 ? ArrowUp : ArrowDown} />
+                            {data.per_1h}
+                            <Image style={styles.headerBottomImg} source={data.per_1h > 0 ? ArrowUp : ArrowDown} />
                         </Text>
                     </View>
                     <View style={styles.headerBottomDivider}></View>
                     <View style={styles.headerBottomBox}>
                         <Text style={styles.headerBottomDate}>24 hours</Text>
                         <Text style={
-                            [styles.headerBottomText, value.percent_change_24h > 0 
+                            [styles.headerBottomText, data.per_24h > 0 
                             ? styles.headerBottomUp 
                             : styles.headerBottomDown]
                         }>
-                            {`${value.percent_change_24h}%`}
-                            <Image style={styles.headerBottomImg} source={value.percent_change_24h > 0 ? ArrowUp : ArrowDown} />
+                            {data.per_24h}
+                            <Image style={styles.headerBottomImg} source={data.per_24h > 0 ? ArrowUp : ArrowDown} />
                         </Text>
                     </View>
                     <View style={styles.headerBottomDivider}></View>
                     <View style={styles.headerBottomBox}>
                         <Text style={styles.headerBottomDate}>7 days</Text>
                         <Text style={
-                            [styles.headerBottomText, value.percent_change_7d > 0 
+                            [styles.headerBottomText, data.per_7d > 0 
                             ? styles.headerBottomUp 
                             : styles.headerBottomDown]
                         }>
-                            {value.percent_change_7d}
-                            <Image style={styles.headerBottomImg} source={value.percent_change_7d > 0 ? ArrowUp : ArrowDown} />
+                            {data.per_7d}
+                            <Image style={styles.headerBottomImg} source={data.per_7d > 0 ? ArrowUp : ArrowDown} />
                         </Text>
                     </View>
                 </View>

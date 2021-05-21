@@ -22,7 +22,7 @@ const CoinsStack = () => {
             },
             headerTintColor: Colors.light
         }}
-            >
+        >
             <Stack.Screen name="Coins" component={CoinsScreen} />
             <Stack.Screen name="CoinDetail" component={CoinsDetailScreen} />
         </Stack.Navigator>

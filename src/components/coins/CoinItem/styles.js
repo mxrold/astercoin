@@ -80,7 +80,7 @@ export const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         padding: 6,
         fontSize: 16,
-        fontWeight: '500',
+        fontWeight: '700',
         textAlign: 'center',
         color: Colors.blue4,
         borderRadius: 3.5
