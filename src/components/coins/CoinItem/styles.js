@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
         marginHorizontal: 10,
-        marginTop: 18,
+        marginTop: 15,
         padding: 10,
         backgroundColor: Colors.dark4,
         borderRadius: 7
@@ -40,18 +40,18 @@ export const styles = StyleSheet.create({
         
     },
     cardBoxImg: {
-        width: 25,
-        height: 25,
+        width: 22,
+        height: 22,
         borderRadius: 50
     },
     cardBoxSymbol: {
         marginLeft: 6,
-        fontSize: 25,
+        fontSize: 22,
         fontWeight: '700',
         color: Colors.blue4
     },
     cardInfoNameText: {
-        marginLeft: 31,
+        marginLeft: 28,
         paddingRight: 10,
         fontSize: 14,
         fontWeight: '500',

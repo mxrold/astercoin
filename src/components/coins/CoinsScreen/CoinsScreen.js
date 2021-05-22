@@ -4,7 +4,6 @@ import useGetData from '../../../hooks/useGetData'
 // Component
 import CoinItem from '../CoinItem/CoinItem'
 import CoinsSearch from '../CoinsSearch/CoinsSearch'
-import CoinsDividerItem from '../CoinsDividerItem/CoinsDividerItem'
 import Loader from '../../Global/Loader'
 import { View, FlatList, RefreshControl, ScrollView } from 'react-native'
 
@@ -27,7 +26,6 @@ const CoinsScreen = ({ navigation }) => {
         const unsubscribe = navigation.addListener('focus', () => {
             fetchData()
         })
-        
         return unsubscribe
     }, [navigation])
     
@@ -60,8 +58,6 @@ const CoinsScreen = ({ navigation }) => {
             return coin.name.toLowerCase().includes(query.toLowerCase()) ||
                     coin.symbol.toLowerCase().includes(query.toLowerCase())
         })
-        console.log(coinsFilter)
-
         setData(coinsFilter)
     }
 
@@ -79,7 +75,6 @@ const CoinsScreen = ({ navigation }) => {
                 }
             >
                 <CoinsSearch onChange={onHandleSearch}/>
-                <CoinsDividerItem />
             {
                 loading &&
                 <Loader />

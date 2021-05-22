@@ -14,7 +14,7 @@ import { Colors } from './src/assets/GlobalStyles/Colors'
 
 //Images
 import Coins from './src/assets/coins.png'
-import Favorites from './src/assets/heart.png'
+import Favorites from './src/assets/heart_fill.png'
 import News from './src/assets/news.png'
 
 const Tabs = createBottomTabNavigator()
@@ -45,7 +45,7 @@ const AppContent = () => {
             tabBarIcon: ({ size, color }) => (
               <Image 
                 source={Coins} 
-                style={{tintColor: color, width: 18, height: 18, resizeMode: 'contain'}}
+                style={{tintColor: color, width: 18, height: 18}}
               />
             )
           }}
@@ -57,7 +57,7 @@ const AppContent = () => {
           tabBarIcon: ({ size, color }) => (
             <Image 
               source={Favorites} 
-              style={{tintColor: color, width: 18, height: 18, resizeMode: 'contain'}}
+              style={{tintColor: color, width: 18, height: 18}}
             />
           )
         }}
@@ -69,7 +69,7 @@ const AppContent = () => {
           tabBarIcon: ({ size, color }) => (
             <Image 
               source={News} 
-              style={{tintColor: color, width: 18, height: 18, resizeMode: 'contain'}}
+              style={{tintColor: color, width: 18, height: 18}}
             />
           )
         }}

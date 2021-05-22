@@ -20,13 +20,8 @@ const NewsScreen = ({ navigation }) => {
     
     useEffect(() => {
         getData()
-
-        const unsubscribe = navigation.addListener('focus', () => {
-            fetchData()
-        })
-        
-        return unsubscribe
-    }, [navigation])
+        fetchData()
+    }, [])
 
     const URL =  'https://api.coinstats.app/public/v1/news/latest?skip=0&limit=20'
     const getData = async () => {

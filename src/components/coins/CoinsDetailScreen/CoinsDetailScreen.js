@@ -163,11 +163,10 @@ const CoinsDetailScreen = ({ route, navigation }) => {
 
     return (
         <View style={styles.container}>
-            {loading && <Loader />}
             <View style={styles.header}>
                 <View style={styles.headerTop}>
                     <View style={styles.headerTopImg}>
-                        <View style={styles.headerTopImgContainerDiv}>
+                        <View style={[styles.headerTopImgContainerDiv, isFavorite ? styles.borderFav : styles.borderNoFav]}>
                             <Image 
                                 style={styles.headerTopImgContainerDivImg}
                                 resizeMode={'contain'}
@@ -195,36 +194,36 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                     <View style={styles.headerBottomBox}>
                         <Text style={styles.headerBottomDate}>1 hour</Text>
                         <Text style={
-                            [styles.headerBottomText, data.per_1h > 0 
+                            [styles.headerBottomText, value.percent_change_1h > 0 
                             ? styles.headerBottomUp 
                             : styles.headerBottomDown]
                         }>
-                            {data.per_1h}
-                            <Image style={styles.headerBottomImg} source={data.per_1h > 0 ? ArrowUp : ArrowDown} />
+                            {`${value.percent_change_1h}%`}
+                            <Image style={styles.headerBottomImg} source={value.percent_change_1h > 0 ? ArrowUp : ArrowDown} />
                         </Text>
                     </View>
                     <View style={styles.headerBottomDivider}></View>
                     <View style={styles.headerBottomBox}>
                         <Text style={styles.headerBottomDate}>24 hours</Text>
                         <Text style={
-                            [styles.headerBottomText, data.per_24h > 0 
+                            [styles.headerBottomText, value.percent_change_24h > 0 
                             ? styles.headerBottomUp 
                             : styles.headerBottomDown]
                         }>
-                            {data.per_24h}
-                            <Image style={styles.headerBottomImg} source={data.per_24h > 0 ? ArrowUp : ArrowDown} />
+                            {`${value.percent_change_24h}%`}
+                            <Image style={styles.headerBottomImg} source={value.percent_change_24h > 0 ? ArrowUp : ArrowDown} />
                         </Text>
                     </View>
                     <View style={styles.headerBottomDivider}></View>
                     <View style={styles.headerBottomBox}>
                         <Text style={styles.headerBottomDate}>7 days</Text>
                         <Text style={
-                            [styles.headerBottomText, data.per_7d > 0 
+                            [styles.headerBottomText, value.percent_change_7d > 0 
                             ? styles.headerBottomUp 
                             : styles.headerBottomDown]
                         }>
-                            {data.per_7d}
-                            <Image style={styles.headerBottomImg} source={data.per_7d > 0 ? ArrowUp : ArrowDown} />
+                            {`${value.percent_change_7d}%`}
+                            <Image style={styles.headerBottomImg} source={value.percent_change_7d > 0 ? ArrowUp : ArrowDown} />
                         </Text>
                     </View>
                 </View>

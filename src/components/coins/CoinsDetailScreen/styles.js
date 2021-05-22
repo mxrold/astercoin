@@ -33,8 +33,13 @@ export const styles =  StyleSheet.create({
         width: 35,
         height: 35,
         borderWidth: 2,
-        borderColor: Colors.dark3,
         borderRadius: 50
+    },
+    borderFav: {
+        borderColor: Colors.purple,
+    },
+    borderNoFav: {
+        borderColor: Colors.dark3,
     },
     headerTopImgContainerDivImg: {
         width: 24,
