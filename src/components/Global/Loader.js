@@ -9,8 +9,8 @@ const Loader = () => {
     return (
         <View style={styles.containerLoader}>
             <ActivityIndicator 
-                color={Colors.blue1}
-                size='large'
+                color={Colors.purple}
+                size={40}
             />
         </View>
     )

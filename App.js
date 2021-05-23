@@ -1,6 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import NetInfo from '@react-native-community/netinfo'
+
+import Connectivity from './src/components/Global/Connectivity'
 
 import CoinsStack from './src/components/coins/CoinsStack/CoinsStack'
 import FavoritesStack from './src/components/favorites/FavoritesStack/FavoritesStack'
@@ -16,6 +19,7 @@ import { Colors } from './src/assets/GlobalStyles/Colors'
 import Coins from './src/assets/coins.png'
 import Favorites from './src/assets/heart_fill.png'
 import News from './src/assets/news.png'
+
 
 const Tabs = createBottomTabNavigator()
 
@@ -81,10 +85,23 @@ const AppContent = () => {
 }
 
 const App = () => {
+  const [ connected, isConnected ] = useState()
+
+  useEffect(() => {
+      const unsubscribe = NetInfo.addEventListener(state => {
+          isConnected(state.isConnected)
+      })
+      
+      unsubscribe()
+  }, [])  
   return(
     <>
-      <StatusBar backgroundColor="#101021" animated={true} />
-      <AppContent />
+        <StatusBar backgroundColor="#101021" animated={true} />
+      {
+        connected === false 
+        ? <Connectivity />
+        : <AppContent />
+      }
     </>
   )
 }

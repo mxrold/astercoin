@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { ScrollView, Text, FlatList, RefreshControl } from 'react-native'
+import { View, ScrollView, Text, FlatList, RefreshControl } from 'react-native'
 
 import NewsItem from '../NewsItem/NewsItem'
 
@@ -47,29 +47,31 @@ const NewsScreen = ({ navigation }) => {
     }
 
     return (
-        <ScrollView 
-            style={styles.container}
-            refreshControl={
-                <RefreshControl
-                    refreshing={refreshing}
-                    onRefresh={onRefresh}
-                    colors={['#867ae9']}
-                    progressBackgroundColor={'#121329'}
-                    progressViewOffset={20}
-                />
-            }
-            >
+        <View style={styles.container}>
             {
-                loading && <Loader />
+                loading === true 
+                ? <Loader />
+                : <ScrollView
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                            colors={['#867ae9']}
+                            progressBackgroundColor={'#121329'}
+                            progressViewOffset={20}
+                        />
+                    }
+                    >
+                    <Text style={styles.title}>Latest news</Text>
+                    <FlatList 
+                        data={news}
+                        renderItem={({ item }) => (
+                            <NewsItem item={item} onPress={() => onHandlePress(item)}/>
+                        )}
+                    />
+                </ScrollView>
             }
-            <Text style={styles.title}>Latest news</Text>
-            <FlatList 
-                data={news}
-                renderItem={({ item }) => (
-                    <NewsItem item={item} onPress={() => onHandlePress(item)}/>
-                )}
-            />
-        </ScrollView>
+        </View>
     )
 }
 

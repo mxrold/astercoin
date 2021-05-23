@@ -75,7 +75,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
             },
             {
                 title: "Market cap",
-                data: [data.price]
+                data: [data.market]
             },
             {
                 title: "Volume 24 hours",
@@ -246,17 +246,18 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                 />
             </View>
             { 
-                loading &&  <Loader /> 
+                loading === true 
+                ? <Loader /> 
+                : <View style={styles.flatList}>
+                    <Text style={styles.flatListTitle}>Markets</Text>
+                    <FlatList
+                        data={markets}
+                        keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
+                        renderItem={({ item }) => <CoinsMarkets item={item} />}
+                        horizontal={true}
+                    />
+                  </View>
             }
-            <View style={styles.flatList}>
-                <Text style={styles.flatListTitle}>Markets</Text>
-                <FlatList
-                    data={markets}
-                    keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
-                    renderItem={({ item }) => <CoinsMarkets item={item} />}
-                    horizontal={true}
-                />
-            </View>
         </View>
     )
 }

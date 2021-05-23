@@ -5,7 +5,7 @@ import useGetData from '../../../hooks/useGetData'
 import CoinItem from '../CoinItem/CoinItem'
 import CoinsSearch from '../CoinsSearch/CoinsSearch'
 import Loader from '../../Global/Loader'
-import { View, FlatList, RefreshControl, ScrollView } from 'react-native'
+import { View, Text, FlatList, RefreshControl, ScrollView } from 'react-native'
 
 // Styles
 import { styles } from './styles'
@@ -22,13 +22,9 @@ const CoinsScreen = ({ navigation }) => {
     
     useEffect(() => {
         getData()
+        fetchData()
+    }, [])
 
-        const unsubscribe = navigation.addListener('focus', () => {
-            fetchData()
-        })
-        return unsubscribe
-    }, [navigation])
-    
     const URL = 'https://api.coinlore.net/api/tickers/?start=0&limit=100'
     const getData = async () => {
         setLoading(true)
@@ -63,29 +59,29 @@ const CoinsScreen = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <ScrollView 
-                refreshControl={
-                    <RefreshControl
-                        refreshing={refreshing}
-                        onRefresh={onRefresh}
-                        colors={['#867ae9']}
-                        progressBackgroundColor={'#121329'}
-                        progressViewOffset={20}
-                    />
-                }
-            >
-                <CoinsSearch onChange={onHandleSearch}/>
             {
-                loading &&
-                <Loader />
+                loading === true 
+                ? <Loader /> 
+                : <ScrollView 
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={refreshing}
+                            onRefresh={onRefresh}
+                            colors={['#867ae9']}
+                            progressBackgroundColor={'#121329'}
+                            progressViewOffset={20}
+                        />
+                    }
+                >
+                    <CoinsSearch onChange={onHandleSearch}/>
+                <FlatList 
+                    data={data}
+                    renderItem={({ item }) => (
+                        <CoinItem item={item} onPress={() => onHandlePress(item)} />
+                        )}
+                    />
+                </ScrollView>
             }
-            <FlatList 
-                data={data}
-                renderItem={({ item }) => (
-                    <CoinItem item={item} onPress={() => onHandlePress(item)} />
-                    )}
-                />
-            </ScrollView>
         </View>
     )
 }
