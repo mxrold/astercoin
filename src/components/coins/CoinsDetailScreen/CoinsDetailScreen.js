@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import useGetData from '../../../hooks/useGetData'
 import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
+import CoinGraph from '../CoinGraph/CoinGraph'
 import Loader from '../../Global/Loader'
 import Storage from '../../../utils/Storage'
 
-import { View, Text, Image, SectionList, FlatList, Pressable, Alert, Share } from 'react-native'
+import { View, Text, Image, FlatList, Pressable, Alert, Share, ScrollView } from 'react-native'
 
 // Format Numbers
 import { formatNumbers } from '../../../utils/formatNumbers'
@@ -21,12 +22,14 @@ import ArrowDown from '../../../assets/arrow-down.png'
 import Heart from '../../../assets/heart_fill.png'
 import HeartOutline from '../../../assets/heart_outline.png'
 import ShareCoin from '../../../assets/share.png'
+import CoinSectionInformation from '../CoinSectionInformation/CoinSectionInformation'
 
 
 const CoinsDetailScreen = ({ route, navigation }) => {
     const [ value, setValue ] = useState({})
     const [ markets, setMarkets ] = useState()
     const [ isFavorite, setIsFavorite ] = useState(false)
+    const [ chart, setChart ] = useState([])
     const [ loading, setLoading ] = useState(false)
     
     const data = {
@@ -49,8 +52,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         navigation.setOptions({ title: coin.symbol })
         setValue(coin)
         setLoading(false)
-
-
+        
         const fetchMarketsData = async (coinId) => {
             setLoading(true)
             const URL = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`
@@ -59,40 +61,21 @@ const CoinsDetailScreen = ({ route, navigation }) => {
             setLoading(false)
         }
 
+        const fetchPricesChart = async (coinName) => {
+            const URL = `https://api.coingecko.com/api/v3/coins/${coinName}/market_chart?vs_currency=usd&days=7&interval=daily`
+            const response = await useGetData(URL)
+            setChart(response)
+        }
+
         getFavorite(coin)
         fetchMarketsData(coin.id)
+        if(coin.nameid === 'binance-coin') {
+            fetchPricesChart('binancecoin')
+        } else {
+            fetchPricesChart(coin.nameid)
+        }
     }, [])
     
-    const getSections = () => {
-        const section = [
-            {
-                title: "Rank",
-                data: [data.rank]
-            },
-            {
-                title: "Price USD",
-                data: [data.price]
-            },
-            {
-                title: "Market cap",
-                data: [data.market]
-            },
-            {
-                title: "Volume 24 hours",
-                data: [data.volume24]
-            },
-            {
-                title: "Total supply",
-                data: [data.t_supply]
-            },
-            {
-                title: "Max supply",
-                data: [data.m_supply]
-            }
-        ]   
-        return section
-    }
-
     const toggleFavorite = () => {
         if(isFavorite) {
             removeFavorite()
@@ -107,7 +90,6 @@ const CoinsDetailScreen = ({ route, navigation }) => {
 
         const stored = await Storage.instance.add(key, coin)
 
-        console.log('stored',stored)
         if(stored) {
             setIsFavorite(true)
         }
@@ -144,7 +126,6 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                 setIsFavorite(true)
             }
 
-            console.log('favStr', favStr)
         } catch(error) {
             console.log('getFavorite error', error)
         }
@@ -152,16 +133,17 @@ const CoinsDetailScreen = ({ route, navigation }) => {
     
     const onShare = async () => {
         try {
-          const result = await Share.share({
+            const result = await Share.share({
            title: 'App link',
-            message: `${data.name} - ${data.symbol}\n- Rank: ${data.rank}\n- Price: ${data.price}\n- Percentajes:\n\t> 1 hour: ${data.per_1h}\n\t> 24 hours: ${data.per_24h}\n\t> 7 days: ${data.per_7d}\n- Market cap: ${data.market}\n- Volume 24 hours: ${data.volume24}\n- Total supply: ${data.t_supply}\n- Max supply: ${data.m_supply}\n\nInformation by coinMarket`
+           message: `${data.name} - ${data.symbol}\n- Rank: ${data.rank}\n- Price: ${data.price}\n- Percentajes:\n\t> 1 hour: ${data.per_1h}\n\t> 24 hours: ${data.per_24h}\n\t> 7 days: ${data.per_7d}\n- Market cap: ${data.market}\n- Volume 24 hours: ${data.volume24}\n- Total supply: ${data.t_supply}\n- Max supply: ${data.m_supply}\n\nInformation by coinMarket`
         });
         } catch (error) {
-          alert(error.message);
+            alert(error.message);
         }
-      };
+    }
 
     return (
+        <ScrollView>
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerTop}>
@@ -228,23 +210,13 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                     </View>
                 </View>
             </View>
-            <View style={styles.section}>
-                <SectionList
-                    style={styles.sectionContainer}
-                    sections={getSections()}
-                    keyExtractor={(item) => item}
-                    renderItem={({ item }) => 
-                        <View style={styles.sectionContainerText}>
-                            <Text style={styles.sectionContainerTextText}>{item}</Text>
-                        </View>
-                    }
-                    renderSectionHeader={({ section }) => 
-                        <View style={styles.sectionContainerTitle}>
-                            <Text style={styles.sectionContainerTitleText}>{section.title}</Text>
-                        </View>
-                    }
-                />
-            </View>
+
+            <CoinSectionInformation data={data}/>
+            
+            {
+                Object.keys(chart).length === 0 ? <Loader /> : <CoinGraph chart={chart} />
+            }            
+           
             { 
                 loading === true 
                 ? <Loader /> 
@@ -259,6 +231,8 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                   </View>
             }
         </View>
+        </ScrollView>
+
     )
 }
 

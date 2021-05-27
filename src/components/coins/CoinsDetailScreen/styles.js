@@ -7,10 +7,8 @@ export const styles =  StyleSheet.create({
         backgroundColor: Colors.dark2
     },
     header: {
-        height: '35%',
         paddingTop: 10,
-        paddingLeft: 26,
-        paddingRight: 26,
+        paddingHorizontal: 26,
         paddingBottom: 26,
         backgroundColor: Colors.dark1,
         borderBottomLeftRadius: 21,
@@ -20,7 +18,6 @@ export const styles =  StyleSheet.create({
     headerTop: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        height: '55%'
     },
     headerTopImg: {
         flexDirection: 'row',
@@ -75,7 +72,7 @@ export const styles =  StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-evenly',
         alignItems: 'center',
-        height: '45%',
+        marginTop: 26,
         backgroundColor: Colors.dark4,
         borderRadius: 7
     },
@@ -107,49 +104,14 @@ export const styles =  StyleSheet.create({
         width: 24,
         height: 24
     },
-    section: {
-        position: 'relative',
-        top: -20,
-        height: '45%',
-        marginVertical: 6,
-        marginHorizontal: 26,
-        zIndex: 2,
-    },
-    sectionContainer: {
-        paddingVertical: 6,
-        paddingHorizontal: 10,
-        backgroundColor: Colors.dark4,
-        borderRadius: 7
-    },
-    sectionContainerText: {
-    },
-    sectionContainerTextText: {
-        marginBottom: 10,
-        marginLeft: 6,
-        fontSize: 16,
-        color: Colors.blue4
-    },
-    sectionContainerTitle: {
-        marginBottom: 5,
-        padding: 6,
-        backgroundColor: Colors.dark3,
-        borderRadius: 3.5
-    },
-    sectionContainerTitleText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: Colors.blue4
-    },
     flatList: {
-        position: 'relative',
         top: -20,
-        height: '20%',
         marginHorizontal: 10
     },
     flatListTitle: {
         marginLeft: 10,
         marginBottom: 5,
-        fontSize: 18,
+        fontSize: 22,
         fontWeight: '500',
         color: Colors.blue4
     }
