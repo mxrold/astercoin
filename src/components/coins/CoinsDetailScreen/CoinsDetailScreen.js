@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import useGetData from '../../../hooks/useGetData'
 import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 import CoinGraph from '../CoinGraph/CoinGraph'
+import CoinSectionInformation from '../CoinSectionInformation/CoinSectionInformation'
 import Loader from '../../Global/Loader'
 import Storage from '../../../utils/Storage'
 
@@ -12,6 +13,7 @@ import { formatNumbers } from '../../../utils/formatNumbers'
 
 // Styles
 import { styles } from './styles'
+import LottieView from 'lottie-react-native';
 
 // Image
 import { useGetIcon } from '../../../hooks/useGetIcon'
@@ -19,10 +21,8 @@ import { useGetIcon } from '../../../hooks/useGetIcon'
 // Arrows
 import ArrowUp from '../../../assets/arrow-up.png'
 import ArrowDown from '../../../assets/arrow-down.png'
-import Heart from '../../../assets/heart_fill.png'
-import HeartOutline from '../../../assets/heart_outline.png'
 import ShareCoin from '../../../assets/share.png'
-import CoinSectionInformation from '../CoinSectionInformation/CoinSectionInformation'
+import HeartAnimate from '../../../assets/heart_json.json'
 
 
 const CoinsDetailScreen = ({ route, navigation }) => {
@@ -76,6 +76,26 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         }
     }, [])
     
+    const likeAnimation = useRef(null)
+    const isFirstRun = useRef(true)
+
+    useEffect(() => {
+        if(isFirstRun.current) {
+            if (isFavorite) {
+                likeAnimation.current.play(66, 66)
+            } else {
+                likeAnimation.current.play(3, 4)
+            }
+            isFirstRun.current = false
+        }
+        else if(isFavorite) {
+            likeAnimation.current.play(5, 66)
+        } else {
+            likeAnimation.current.play(0, 3)
+        }
+
+    }, [isFavorite])
+
     const toggleFavorite = () => {
         if(isFavorite) {
             removeFavorite()
@@ -165,9 +185,12 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                             />
                         </Pressable>
                         <Pressable style={styles.headerTopFavorite} onPress={toggleFavorite}>  
-                            <Image 
+                            <LottieView 
+                                ref={likeAnimation}
                                 style={styles.headerTopFavoriteIcon} 
-                                source={ isFavorite ? Heart : HeartOutline }
+                                source={HeartAnimate} 
+                                autoPlay={false}
+                                loop={false}
                             />
                         </Pressable>
                     </View>

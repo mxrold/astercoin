@@ -52,21 +52,22 @@ export const styles =  StyleSheet.create({
     headerTopContainerIcons: {
         flexDirection: 'row',
         justifyContent:  'space-between',
+        alignItems: 'center',
         width: '25%',
     },
     headerTopShare: {
         
     },
     headerTopShareIcon: {
-        width: 30,
-        height: 30
+        width: 25,
+        height: 25
     },
     headerTopFavorite: {
 
     },
     headerTopFavoriteIcon: {
-        width: 30,
-        height: 30
+        width: 40,
+        height: 40
     },
     headerBottom: {
         flexDirection: 'row',

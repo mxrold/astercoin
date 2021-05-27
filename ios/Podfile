@@ -16,6 +16,8 @@ target 'coinMarket' do
 
   pod 'react-native-restart', :path => '../node_modules/react-native-restart'
 
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'coinMarketTests' do
     inherit! :complete
     # Pods for testing
