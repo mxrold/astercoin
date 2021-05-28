@@ -13,7 +13,7 @@ import { formatNumbers } from '../../../utils/formatNumbers'
 
 // Styles
 import { styles } from './styles'
-import LottieView from 'lottie-react-native';
+import LottieView from 'lottie-react-native'
 
 // Image
 import { useGetIcon } from '../../../hooks/useGetIcon'

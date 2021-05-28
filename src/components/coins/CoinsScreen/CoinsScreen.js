@@ -62,7 +62,20 @@ const CoinsScreen = ({ navigation }) => {
             {
                 loading === true 
                 ? <Loader /> 
-                : <ScrollView 
+                : <View 
+                    // refreshControl={
+                    //     <RefreshControl
+                    //         refreshing={refreshing}
+                    //         onRefresh={onRefresh}
+                    //         colors={['#867ae9']}
+                    //         progressBackgroundColor={'#121329'}
+                    //         progressViewOffset={20}
+                    //     />
+                    // }
+                >
+                    <CoinsSearch onChange={onHandleSearch}/>
+                <FlatList 
+                    data={data}
                     refreshControl={
                         <RefreshControl
                             refreshing={refreshing}
@@ -72,15 +85,11 @@ const CoinsScreen = ({ navigation }) => {
                             progressViewOffset={20}
                         />
                     }
-                >
-                    <CoinsSearch onChange={onHandleSearch}/>
-                <FlatList 
-                    data={data}
                     renderItem={({ item }) => (
                         <CoinItem item={item} onPress={() => onHandlePress(item)} />
                         )}
                     />
-                </ScrollView>
+                </View>
             }
         </View>
     )

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     textInput: {
         height: 40,
         marginHorizontal: 18,
-        marginTop: 15,
+        marginVertical: 7,
         paddingHorizontal: 16,
         fontSize: 14,
         backgroundColor: Colors.dark3,
