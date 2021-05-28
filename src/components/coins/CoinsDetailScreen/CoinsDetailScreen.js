@@ -22,7 +22,7 @@ import { useGetIcon } from '../../../hooks/useGetIcon'
 import ArrowUp from '../../../assets/arrow-up.png'
 import ArrowDown from '../../../assets/arrow-down.png'
 import ShareCoin from '../../../assets/share.png'
-import HeartAnimate from '../../../assets/heart_json.json'
+import HeartAnimate from '../../../assets/heart.json'
 
 
 const CoinsDetailScreen = ({ route, navigation }) => {
