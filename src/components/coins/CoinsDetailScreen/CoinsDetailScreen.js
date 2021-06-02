@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react'
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
 import useGetData from '../../../hooks/useGetData'
 import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 import CoinGraph from '../CoinGraph/CoinGraph'
@@ -6,7 +7,7 @@ import CoinSectionInformation from '../CoinSectionInformation/CoinSectionInforma
 import Loader from '../../Global/Loader'
 import Storage from '../../../utils/Storage'
 
-import { View, Text, Image, FlatList, Pressable, Alert, Share, ScrollView } from 'react-native'
+import { View, Text, Image, Pressable, Alert, Share, ScrollView } from 'react-native'
 
 // Format Numbers
 import { formatNumbers } from '../../../utils/formatNumbers'
@@ -18,62 +19,23 @@ import LottieView from 'lottie-react-native'
 // Image
 import { useGetIcon } from '../../../hooks/useGetIcon'
 
-// Arrows
-import ArrowUp from '../../../assets/arrow-up.png'
-import ArrowDown from '../../../assets/arrow-down.png'
+// Icons
 import ShareCoin from '../../../assets/share.png'
 import HeartAnimate from '../../../assets/heart.json'
 
 
+const Tab = createMaterialTopTabNavigator();
+
 const CoinsDetailScreen = ({ route, navigation }) => {
     const [ value, setValue ] = useState({})
-    const [ markets, setMarkets ] = useState()
     const [ isFavorite, setIsFavorite ] = useState(false)
-    const [ chart, setChart ] = useState([])
-    const [ loading, setLoading ] = useState(false)
     
-    const data = {
-        name: value.name,
-        symbol: value.symbol,
-        per_1h: `${value.percent_change_1h}%`,
-        per_24h: `${value.percent_change_24h}%`,
-        per_7d: `${value.percent_change_7d}%`,
-        rank: `#${value.rank}`,
-        price: `$${formatNumbers(value.price_usd)}`,
-        market: `$${formatNumbers(value.market_cap_usd)}`,
-        volume24: `$${formatNumbers(value.volume24)}`,
-        t_supply: formatNumbers(value.tsupply),
-        m_supply: value.msupply > 0 ? formatNumbers(value.msupply) : 'Unlimited supply'
-    }
-
     useEffect(() => {
-        setLoading(true)
         const { coin } = route.params
         navigation.setOptions({ title: coin.symbol })
         setValue(coin)
-        setLoading(false)
         
-        const fetchMarketsData = async (coinId) => {
-            setLoading(true)
-            const URL = `https://api.coinlore.net/api/coin/markets/?id=${coinId}`
-            const response = await useGetData(URL)
-            setMarkets(response)
-            setLoading(false)
-        }
-
-        const fetchPricesChart = async (coinName) => {
-            const URL = `https://api.coingecko.com/api/v3/coins/${coinName}/market_chart?vs_currency=usd&days=7&interval=daily`
-            const response = await useGetData(URL)
-            setChart(response)
-        }
-
         getFavorite(coin)
-        fetchMarketsData(coin.id)
-        if(coin.nameid === 'binance-coin') {
-            fetchPricesChart('binancecoin')
-        } else {
-            fetchPricesChart(coin.nameid)
-        }
     }, [])
     
     const likeAnimation = useRef(null)
@@ -95,6 +57,20 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         }
 
     }, [isFavorite])
+
+    const data = {
+        name: value.name,
+        symbol: value.symbol,
+        per_1h: `${value.percent_change_1h}%`,
+        per_24h: `${value.percent_change_24h}%`,
+        per_7d: `${value.percent_change_7d}%`,
+        rank: `#${value.rank}`,
+        price: `$${formatNumbers(value.price_usd)}`,
+        market: `$${formatNumbers(value.market_cap_usd)}`,
+        volume24: `$${formatNumbers(value.volume24)}`,
+        t_supply: formatNumbers(value.tsupply),
+        m_supply: value.msupply > 0 ? formatNumbers(value.msupply) : 'Unlimited supply'
+    }
 
     const toggleFavorite = () => {
         if(isFavorite) {
@@ -162,8 +138,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
         }
     }
 
-    return (
-        <ScrollView>
+    return (        
         <View style={styles.container}>
             <View style={styles.header}>
                 <View style={styles.headerTop}>
@@ -175,7 +150,7 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                                 source={{ uri: useGetIcon(value.nameid)}}
                             />
                         </View>
-                        <Text style={styles.headerTopText}>{data.name}</Text>
+                        <Text style={styles.headerTopText}>{value.name}</Text>
                     </View>
                     <View style={styles.headerTopContainerIcons}>
                         <Pressable style={styles.headerTopShare} onPress={onShare}>
@@ -195,67 +170,27 @@ const CoinsDetailScreen = ({ route, navigation }) => {
                         </Pressable>
                     </View>
                 </View>
-                <View style={styles.headerBottom}>
-                    <View style={styles.headerBottomBox}>
-                        <Text style={styles.headerBottomDate}>1 hour</Text>
-                        <Text style={
-                            [styles.headerBottomText, value.percent_change_1h > 0 
-                            ? styles.headerBottomUp 
-                            : styles.headerBottomDown]
-                        }>
-                            {`${value.percent_change_1h}%`}
-                            <Image style={styles.headerBottomImg} source={value.percent_change_1h > 0 ? ArrowUp : ArrowDown} />
-                        </Text>
-                    </View>
-                    <View style={styles.headerBottomDivider}></View>
-                    <View style={styles.headerBottomBox}>
-                        <Text style={styles.headerBottomDate}>24 hours</Text>
-                        <Text style={
-                            [styles.headerBottomText, value.percent_change_24h > 0 
-                            ? styles.headerBottomUp 
-                            : styles.headerBottomDown]
-                        }>
-                            {`${value.percent_change_24h}%`}
-                            <Image style={styles.headerBottomImg} source={value.percent_change_24h > 0 ? ArrowUp : ArrowDown} />
-                        </Text>
-                    </View>
-                    <View style={styles.headerBottomDivider}></View>
-                    <View style={styles.headerBottomBox}>
-                        <Text style={styles.headerBottomDate}>7 days</Text>
-                        <Text style={
-                            [styles.headerBottomText, value.percent_change_7d > 0 
-                            ? styles.headerBottomUp 
-                            : styles.headerBottomDown]
-                        }>
-                            {`${value.percent_change_7d}%`}
-                            <Image style={styles.headerBottomImg} source={value.percent_change_7d > 0 ? ArrowUp : ArrowDown} />
-                        </Text>
-                    </View>
-                </View>
             </View>
 
-            <CoinSectionInformation data={data}/>
-            
-            {
-                Object.keys(chart).length === 0 ? <Loader /> : <CoinGraph chart={chart} />
-            }            
-           
-            { 
-                loading === true 
-                ? <Loader /> 
-                : <View style={styles.flatList}>
-                    <Text style={styles.flatListTitle}>Markets</Text>
-                    <FlatList
-                        data={markets}
-                        keyExtractor={(item) => `${item.name}-${item.base}-${item.quote}`}
-                        renderItem={({ item }) => <CoinsMarkets item={item} />}
-                        horizontal={true}
-                    />
-                  </View>
-            }
-        </View>
-        </ScrollView>
+            <Tab.Navigator tabBarOptions={{
+                indicatorStyle: {
+                    backgroundColor: '#867ae9'
+                  },
+                inactiveTintColor: "#2E3A59", 
+                activeTintColor: "#867ae9", 
+                labelStyle: { fontSize: 12 },
+                style: {
+                     backgroundColor: '#121329' 
+                },
+            }}>
+                <Tab.Screen name="Information" children={() => <CoinSectionInformation value={value} data={data} />} />
+                <Tab.Screen name="Charts" children={() => <CoinGraph nameId={value.nameid} />} />
+                <Tab.Screen name="Markets" children={() => <CoinsMarkets id={value.id} />} 
+                />
+            </Tab.Navigator>
 
+        </View>
+        
     )
 }
 
