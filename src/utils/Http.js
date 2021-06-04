@@ -8,7 +8,6 @@ class Http {
         return json;
       } catch (err) {
         console.error('HTTP GET Error: ', err);
-        throw Error(err);
       }
     };
   
@@ -27,4 +26,4 @@ class Http {
     };
 }
   
-  export default Http;
+  export default Http

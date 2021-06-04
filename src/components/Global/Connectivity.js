@@ -38,24 +38,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: 30,
         backgroundColor: Colors.dark2
     },
-    card: {
-        padding: 16,
-        backgroundColor: Colors.dark3,
-        borderRadius: 7,
-        shadowColor: Colors.dark1,
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-
-        elevation: 5,
-    },
     image: {
         alignSelf: 'center',
-        width: 250,
-        height: 220
+        width: 190,
+        height: 190,
+        resizeMode: 'contain'
     },
     title: {
         marginVertical: 12,
