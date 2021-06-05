@@ -7,9 +7,12 @@ export const styles = StyleSheet.create({
         backgroundColor: Colors.dark2
     },
     title: {
+        marginVertical: 10,
         marginHorizontal: 10,
         fontSize: 28,
         fontWeight: '500',
-        color: Colors.light
+        color: Colors.light,
+        borderBottomWidth: 2,
+        borderBottomColor: Colors.purple
     }
 })

@@ -67,7 +67,7 @@ const CoinsScreen = ({ navigation }) => {
         },
         {
             id: 2,
-            title: 'A-z',
+            title: 'Name',
             param: 'abc'
         },
         {

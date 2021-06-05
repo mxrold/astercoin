@@ -5,7 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         marginHorizontal: 10,
-        marginVertical: 10,
+        marginBottom: 15
     },
     containerImage: {
         width: '40%',
@@ -30,7 +30,6 @@ export const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '400',
         color: Colors.blue4,
-        borderRadius: 3.5
     },
     containerInfoText: {
         fontSize: 16,

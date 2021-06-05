@@ -62,5 +62,5 @@ export const styles = StyleSheet.create({
         color: Colors.light,
         borderBottomWidth: 1,
         borderBottomColor: Colors.dark3,
-    },
+    }
 })

@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { View, ScrollView, Text, FlatList, RefreshControl } from 'react-native'
 
-import NewsItem from '../NewsItem/NewsItem'
+import NewsItemLatest from '../NewsItemLatest/NewsItemLatest'
+import NewsItemTrending from '../NewsItemTrending/NewsItemTrending'
 
 import useGetData from '../../../hooks/useGetData'
 
@@ -14,7 +15,8 @@ const wait = (timeout) => {
 }
 
 const NewsScreen = ({ navigation }) => {
-    const [ news, setNews ] = useState([])
+    const [ newsLatest, setNewsLatest ] = useState([])
+    const [ newsTrending, setNewsTrending ] = useState([])
     const [ refreshing, setRefreshing ] = useState(false)
     const [ loading, setLoading ] = useState(false)
     
@@ -23,17 +25,21 @@ const NewsScreen = ({ navigation }) => {
         fetchData()
     }, [])
 
-    const URL =  'https://api.coinstats.app/public/v1/news/latest?skip=0&limit=20'
+    const URL_LATEST =  'https://api.coinstats.app/public/v1/news/latest?skip=0&limit=20'
+    const URL_TRENDING =  'https://api.coinstats.app/public/v1/news/trending?skip=0&limit=10'
+
     const getData = async () => {
         setLoading(true)
-        const response = await useGetData(URL)
-        setNews(response.news)
+        const responseLatest = await useGetData(URL_LATEST)
+        const responseTrending = await useGetData(URL_TRENDING)
+        setNewsLatest(responseLatest.news)
+        setNewsTrending(responseTrending.news)
         setLoading(false)
     }
 
     const fetchData = async () => {
-        const response = await useGetData(URL)
-        setNews(response.news)
+        const responseLatest = await useGetData(URL_LATEST)
+        setNewsLatest(responseLatest.news)
     }
 
     const onRefresh = useCallback(() => {
@@ -62,11 +68,20 @@ const NewsScreen = ({ navigation }) => {
                         />
                     }
                     >
+
+                    <Text style={styles.title}>Trending news</Text>
+                    <FlatList 
+                        data={newsTrending}
+                        horizontal={true}
+                        renderItem={({ item }) => (
+                           <NewsItemTrending item={item} onPress={() => onHandlePress(item)}/>
+                        )}
+                    />
                     <Text style={styles.title}>Latest news</Text>
                     <FlatList 
-                        data={news}
+                        data={newsLatest}
                         renderItem={({ item }) => (
-                            <NewsItem item={item} onPress={() => onHandlePress(item)}/>
+                            <NewsItemLatest item={item} onPress={() => onHandlePress(item)}/>
                         )}
                     />
                 </ScrollView>
