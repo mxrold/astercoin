@@ -5,6 +5,7 @@ export const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: Colors.dark2,
+        paddingBottom: 100
     },
     categories: {
         borderBottomWidth: 1,
@@ -24,6 +25,6 @@ export const styles = StyleSheet.create({
     },
     categoriesBtnText: {
         fontSize: 14,
-        color: 'white',
+        color: Colors.textMedium,
     }
 })

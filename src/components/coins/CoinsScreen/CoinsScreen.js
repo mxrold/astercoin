@@ -144,7 +144,6 @@ const CoinsScreen = ({ navigation }) => {
                                 keyExtractor={( item ) => `filter-${item.id}-${item.param}`}
                                 horizontal={true}
                                 renderItem={({ item }) => (
-                                    
                                     <TouchableHighlight 
                                         style={styles.categoriesBtn} 
                                         activeOpacity={0.3}

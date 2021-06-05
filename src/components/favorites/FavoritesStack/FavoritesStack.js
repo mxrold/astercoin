@@ -17,7 +17,7 @@ const FavoritesStack = () => {
                 elevation: 0,
                 shadowOpacity: 0
             },
-            headerTintColor: Colors.light
+            headerTintColor: Colors.textLight
         }}
         >
             <Stack.Screen name="Favorites" component={FavoritesScreen}/>

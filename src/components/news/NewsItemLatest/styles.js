@@ -29,11 +29,11 @@ export const styles = StyleSheet.create({
         marginBottom: 6,
         fontSize: 16,
         fontWeight: '400',
-        color: Colors.blue4,
+        color: Colors.textDark,
     },
     containerInfoText: {
         fontSize: 16,
         fontWeight: '700',
-        color: Colors.blue4,
+        color: Colors.textLight,
     }
 })

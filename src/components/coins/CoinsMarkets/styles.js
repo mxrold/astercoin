@@ -17,7 +17,7 @@ export const styles = StyleSheet.create({
         marginLeft: 10,
         fontSize: 22,
         fontWeight: '500',
-        color: Colors.blue4
+        color: Colors.textLight
     },
     containerMarkets: {
         width: '45%',
@@ -40,12 +40,12 @@ export const styles = StyleSheet.create({
     },
     containerMarketsPriceCoin: {
         fontSize: 14,
-        fontWeight: '700',
-        color: Colors.blue4
+        fontWeight: '500',
+        color: Colors.textMedium
     },
     containerMarketsPriceUsd: {
         fontSize: 12,
-        color: Colors.blue4,
+        color: Colors.textMedium,
         textAlignVertical: 'bottom'
     }
 })

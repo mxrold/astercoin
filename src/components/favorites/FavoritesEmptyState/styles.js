@@ -14,6 +14,6 @@ export const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         fontWeight: '400',
-        color: Colors.blue4
+        color: Colors.textLight
     }
 })

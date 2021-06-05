@@ -20,7 +20,7 @@ export const styles =  StyleSheet.create({
     },
     chartErrorText: {
         fontSize: 18,
-        color: Colors.light
+        color: Colors.textLight
     },
     container: {
         flexDirection: 'column',
@@ -41,7 +41,7 @@ export const styles =  StyleSheet.create({
     containerCategoriesBtnText: {
         fontSize: 14,
         fontWeight: '700',
-        color: Colors.light,
+        color: Colors.textMedium,
         textAlign: 'center'
     },
     separator: {
@@ -74,8 +74,8 @@ export const styles =  StyleSheet.create({
         alignItems: 'center'
     },
     anyChartContainerText: {
-        fontSize: 14,
-        color: Colors.light,
+        fontSize: 16,
+        color: Colors.textLight,
     },
     loaderChart: {
         justifyContent: 'center', 
@@ -85,7 +85,7 @@ export const styles =  StyleSheet.create({
     loaderChartText: {
         marginTop: 20,
         fontSize: 18,
-        color: Colors.blue4
+        color: Colors.textLight
     },
     textData: {
         marginRight: 26,
@@ -93,7 +93,7 @@ export const styles =  StyleSheet.create({
     },
     textDataFilter: {
         fontSize: 14,
-        color: Colors.light,
+        color: Colors.textDark,
         textAlign: 'right'
     }
 })

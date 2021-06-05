@@ -11,7 +11,7 @@ export const styles = StyleSheet.create({
         marginHorizontal: 10,
         fontSize: 28,
         fontWeight: '500',
-        color: Colors.light,
+        color: Colors.textLight,
         borderBottomWidth: 2,
         borderBottomColor: Colors.purple
     }

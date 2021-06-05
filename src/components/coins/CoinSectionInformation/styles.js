@@ -27,7 +27,7 @@ export const styles =  StyleSheet.create({
     informationBottomDate: {
         marginBottom: -6,
         fontSize: 12,
-        color: Colors.blue2,
+        color: Colors.textDark,
         textAlign: 'center'
     },
     informationBottomText: {
@@ -57,7 +57,7 @@ export const styles =  StyleSheet.create({
         marginBottom: 10,
         marginLeft: 6,
         fontSize: 16,
-        color: Colors.blue4
+        color: Colors.textMedium
     },
     sectionContainerTitle: {
         marginBottom: 5,
@@ -68,6 +68,6 @@ export const styles =  StyleSheet.create({
     sectionContainerTitleText: {
         fontSize: 16,
         fontWeight: 'bold',
-        color: Colors.blue4
+        color: Colors.textLight
     }
 })

@@ -10,6 +10,10 @@ import { styles } from './styles'
 // Image
 import { useGetIcon } from '../../../hooks/useGetIcon'
 
+// Arrows
+import ArrowUp from '../../../assets/arrow-up.png'
+import ArrowDown from '../../../assets/arrow-down.png'
+
 const CoinItem = ({ item, onPress }) => {
     return (
         <Pressable onPress={onPress} style={styles.container}>
@@ -29,6 +33,10 @@ const CoinItem = ({ item, onPress }) => {
                 </View>
                 <View style={styles.cardPercent}>
                     <View style={styles.cardPercentBox}>
+                        <Image 
+                            style={styles.cardPercentBoxImg}
+                            source={item.percent_change_1h > 0 ? ArrowUp : ArrowDown} 
+                        />
                         <Text style={[styles.cardPercentBoxText, 
                             item.percent_change_1h > 0 ? styles.cardPercentBoxTextUp : styles.cardPercentBoxTextDown ]}>
                                 {`${item.percent_change_1h}%`}

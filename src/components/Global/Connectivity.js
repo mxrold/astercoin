@@ -48,12 +48,12 @@ const styles = StyleSheet.create({
         marginVertical: 12,
         fontSize: 20,
         fontWeight: '700',
-        color: Colors.blue4
+        color: Colors.textLight
     },
     text: {
         marginBottom: 12,
         fontSize: 16,
-        color: Colors.blue4
+        color: Colors.textMedium
     }
 })
 
