@@ -7,6 +7,21 @@ export const styles =  StyleSheet.create({
         paddingVertical: 18,
         backgroundColor: Colors.dark2,
     },
+    chartError: {
+        flex: 1,
+        justifyContent: 'center',
+        alignSelf: 'center'
+    },
+    chartErrorImage: {
+        alignSelf: 'center',
+        width: 150,
+        height: 150,
+        resizeMode: 'contain'
+    },
+    chartErrorText: {
+        fontSize: 18,
+        color: Colors.light
+    },
     container: {
         flexDirection: 'column',
         marginBottom: 20,
@@ -54,13 +69,9 @@ export const styles =  StyleSheet.create({
        
     },
     anyChartContainer: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center'
-    },
-    anyChartContainerImg: {
-        width: 150,
-        height: 150,
-        resizeMode: 'contain'
     },
     anyChartContainerText: {
         fontSize: 14,

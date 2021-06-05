@@ -42,7 +42,7 @@ export const styles =  StyleSheet.create({
         flexWrap: 'wrap',
         marginLeft: 6,
         fontSize: 25,
-        fontWeight: '700',
+        fontWeight: '600',
         color: Colors.light
     },
     headerTopContainerIcons: {

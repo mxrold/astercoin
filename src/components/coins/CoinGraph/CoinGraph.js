@@ -47,8 +47,12 @@ const CoinGraph = ({ nameId }) => {
     const dataChart = (value) => {
         let data = []
 
-        for(let i = 0; i < chart.prices.length; i++) {
-            data.push({ x: date(value[i][0]), y: formatNumbers(value[i][1]) })
+        if(chart === undefined) {
+            setChart(null)
+        } else {
+            for(let i = 0; i < chart.prices.length; i++) {
+                data.push({ x: date(value[i][0]), y: formatNumbers(value[i][1]) })
+            }
         }
 
         return setPrices(data)
@@ -128,7 +132,12 @@ const CoinGraph = ({ nameId }) => {
     return (
         <View style={styles.chart}>
         {
-            Object.keys(chart).length === 0
+            chart.error 
+            ? <View style={styles.chartError}>
+                <Image style={styles.chartErrorImage} source={NoChart}/>
+                <Text style={styles.chartErrorText}>Oops... The chart could not be loaded</Text>
+              </View>
+            : Object.keys(chart).length === 0
             ? <Loader /> 
             : <>
                 <View style={styles.container}>
@@ -184,10 +193,8 @@ const CoinGraph = ({ nameId }) => {
                 {
                     prices.length === 0 
                     ?   <View style={styles.anyChartContainer}>
-                            <Image style={styles.anyChartContainerImg} source={NoChart} />
                             <Text style={styles.anyChartContainerText}>Select a chart by categories or days</Text>
                         </View> 
-                    
                     :    loading === true
                         ?   <View style={styles.loaderChart}>
                                 <Loader />
