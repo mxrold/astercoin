@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 // Components
 import CoinsScreen from '../CoinsScreen/CoinsScreen'
 import CoinsDetailScreen from '../CoinsDetailScreen/CoinsDetailScreen'
+import LogoTitle from '../../Global/LogoTitle'
 
 // Colors
 import { Colors } from '../../../assets/GlobalStyles/Colors'
@@ -23,7 +24,11 @@ const CoinsStack = () => {
             headerTintColor: Colors.textLight
         }}
         >
-            <Stack.Screen name="Coins" component={CoinsScreen} />
+            <Stack.Screen 
+                name="Coins" 
+                component={CoinsScreen}
+                options={{ headerTitle: props => <LogoTitle {...props} /> }} 
+            />
             <Stack.Screen name="CoinDetail" component={CoinsDetailScreen} />
         </Stack.Navigator>
     )

@@ -4,6 +4,7 @@ import NewsScreen from '../NewsScreen/NewsScreen'
 import NewsDetailScreen from '../NewsDetailScreen/NewsDetailScreen'
 
 import { Colors } from '../../../assets/GlobalStyles/Colors'
+import LogoTitle from '../../Global/LogoTitle'
 
 const Stack = createStackNavigator()
 
@@ -23,6 +24,7 @@ const NewsStack = () => {
             <Stack.Screen 
                 name="News" 
                 component={NewsScreen}
+                options={{ headerTitle: props => <LogoTitle {...props} /> }} 
             />
             <Stack.Screen 
                 name="NewsDetail" 

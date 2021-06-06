@@ -4,6 +4,7 @@ import FavoritesScreen from '../FavoritesScreen/FavoritesScreen'
 import CoinsDetailScreen from '../../coins/CoinsDetailScreen/CoinsDetailScreen'
 
 import { Colors } from '../../../assets/GlobalStyles/Colors'
+import LogoTitle from '../../Global/LogoTitle'
 
 const Stack = createStackNavigator()
 
@@ -20,7 +21,11 @@ const FavoritesStack = () => {
             headerTintColor: Colors.textLight
         }}
         >
-            <Stack.Screen name="Favorites" component={FavoritesScreen}/>
+            <Stack.Screen 
+                name="Favorites" 
+                component={FavoritesScreen}
+                options={{ headerTitle: props => <LogoTitle {...props} /> }} 
+            />
             <Stack.Screen name="CoinDetail" component={CoinsDetailScreen} />
         </Stack.Navigator>
     )

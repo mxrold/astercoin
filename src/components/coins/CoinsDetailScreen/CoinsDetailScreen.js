@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import useGetData from '../../../hooks/useGetData'
 import CoinsMarkets from '../CoinsMarkets/CoinsMarkets'
 import CoinGraph from '../CoinGraph/CoinGraph'
 import CoinSectionInformation from '../CoinSectionInformation/CoinSectionInformation'
-import Loader from '../../Global/Loader'
 import Storage from '../../../utils/Storage'
 
 import { View, Text, Image, Pressable, Alert, Share, ScrollView } from 'react-native'
