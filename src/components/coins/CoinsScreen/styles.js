@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
     },
     categoriesBtn: {
         marginVertical: 10,
-        marginRight: 10,
+        marginHorizontal: 5,
         paddingVertical: 2,
         paddingHorizontal: 20,
         backgroundColor: Colors.dark3,

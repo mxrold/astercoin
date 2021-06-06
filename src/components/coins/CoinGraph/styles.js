@@ -50,11 +50,16 @@ export const styles =  StyleSheet.create({
         backgroundColor: Colors.dark3,
     }, 
     containerFilter: {
-        marginTop: 18,
-        marginHorizontal: -15
+        marginTop: 9,
+        marginHorizontal: -26,
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.dark4,
+        borderTopWidth: 1,
+        borderTopColor: Colors.dark4,
     },
     containerFilterBtn: {
-        marginRight: 10,
+        marginVertical: 10,
+        marginHorizontal: 5,
         paddingVertical: 2,
         paddingHorizontal: 20,
         backgroundColor: Colors.dark3,

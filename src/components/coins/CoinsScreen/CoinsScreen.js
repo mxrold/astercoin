@@ -51,7 +51,6 @@ const CoinsScreen = ({ navigation }) => {
     }
 
     const onHandleSearch = (query) => {
-        console.log(query)
         const coinsFilter = allCoins.filter((coin) => {
             return coin.name.toLowerCase().includes(query.toLowerCase()) ||
                     coin.symbol.toLowerCase().includes(query.toLowerCase())
@@ -136,7 +135,7 @@ const CoinsScreen = ({ navigation }) => {
                 ? <Loader /> 
                 : <View >
                     <>
-                        <CoinsSearch onChange={() =>onHandleSearch}/>
+                        <CoinsSearch onChange={onHandleSearch}/>
                         
                         <View style={styles.categories}>
                             <FlatList 
