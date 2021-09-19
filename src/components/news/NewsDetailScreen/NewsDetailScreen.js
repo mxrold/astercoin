@@ -20,6 +20,10 @@ const NewsDetailScreen = ({ route, navigation }) => {
         const time = new Date(value)
         return time.toLocaleDateString(time)
     }
+
+    const replaceUrlImg = value => {
+        return value.replaceAll('amp;', '')
+    }
    
     return (
         <ScrollView style={styles.container}>
@@ -30,7 +34,7 @@ const NewsDetailScreen = ({ route, navigation }) => {
                     <View style={styles.containerImage}>
                         <Image 
                             style={styles.containerImageImg}
-                            source={{ uri: news.imgURL.replaceAll('amp;', '') }}
+                            source={{ uri: replaceUrlImg(news.imgURL) }}
                         />
                         <View style={styles.containerImageDate}>
                             <Text style={styles.containerImageDateText}>{date(news.feedDate)}</Text>

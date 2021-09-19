@@ -5,6 +5,10 @@ import Loader from '../../Global/Loader'
 import { styles } from './styles'
 
 const NewsItemTrending = ({ item, onPress }) => {
+    const replaceUrlImg = value => {
+        return value.replaceAll('amp;', '')
+    }
+
     return (
         <>
             {
@@ -12,7 +16,7 @@ const NewsItemTrending = ({ item, onPress }) => {
                 ? <Loader />
                 : <Pressable style={styles.container} onPress={onPress}>
                     <View style={styles.containerImage}>
-                        <Image style={styles.containerImageImg} source={{ uri: item.imgURL.replaceAll('amp;', '') }} />
+                        <Image style={styles.containerImageImg} source={{ uri: replaceUrlImg(item.imgURL) }} />
                     </View>
                     <View style={styles.containerInfo}>
                         <Image style={styles.containerInfoIcon} source={{ uri: item.icon }} />
